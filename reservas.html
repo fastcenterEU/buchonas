@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Reserva tu cita · Buchona's Beauty Salon</title>
+  <meta name="description" content="Reserva, consulta o cancela tus citas en Buchona's Beauty Salon, salón de belleza en Irun.">
+  <meta name="theme-color" content="#191B1F">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23191B1F'/%3E%3Ctext x='31' y='46' font-family='Georgia,serif' font-style='italic' font-size='40' text-anchor='middle' fill='%23F7F5F1'%3EB%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Schibsted+Grotesk:wght@400;600&display=swap">
+  <link rel="stylesheet" href="styles.css?v=21">
+  <link rel="stylesheet" href="reservas.css?v=1">
+  <script src="reservas.js?v=1" defer></script>
+</head>
+<body>
+  <a class="saltar" href="#app">Saltar al contenido</a>
+  <header class="cabecera">
+    <div class="contenedor cabecera__fila">
+      <a class="cabecera__marca" href="index.html" aria-label="Buchona's Beauty Salon, volver a la web">
+        <span class="marca__nombre">Buchona's</span>
+        <span class="marca__tipo">Beauty Salon</span>
+      </a>
+      <a class="enlace-volver" href="index.html">Volver a la web</a>
+      <div class="rv-cuenta" data-cuenta hidden>
+        <span class="rv-cuenta__nombre" data-cuenta-nombre></span>
+        <button class="boton boton--secundario rv-boton-peq" type="button" data-accion="salir">Cerrar sesión</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="seccion seccion--papel rv-seccion" aria-live="polite">
+      <div class="contenedor" id="app" tabindex="-1">
+        <noscript><p>Para reservar online necesitas activar JavaScript. También puedes llamar al <a href="tel:+34943906915">943 90 69 15</a>.</p></noscript>
+      </div>
+    </section>
+  </main>
+
+  <div class="rv-aviso" role="status" aria-live="polite" data-aviso hidden></div>
+
+  <dialog class="rv-dialogo" data-dialogo aria-labelledby="dialogo-titulo">
+    <div data-dialogo-cuerpo></div>
+  </dialog>
+
+  <footer class="pie">
+    <div class="contenedor pie__fila">
+      <div>
+        <p class="pie__nombre">Buchona's Beauty Salon</p>
+        <p class="pie__lema">Salón de belleza en Irun</p>
+      </div>
+      <ul class="pie__enlaces" role="list">
+        <li>
+          <a class="boton boton--contorno" href="tel:+34943906915">
+            <svg class="icono" aria-hidden="true" viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+            Llamar
+          </a>
+        </li>
+        <li>
+          <a class="pie__ig" href="https://www.instagram.com/buchonasbs/" rel="noopener" aria-label="Instagram de Buchona's Beauty Salon">
+            <svg class="icono" aria-hidden="true" viewBox="0 0 24 24" fill-rule="evenodd"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM17.3 5.4a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2z"/></svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="contenedor pie__final">
+      <div>
+        <p>Propuesta de diseño · Muner E.B.</p>
+        <p class="pie__aviso">© 2026 Muner E.B. · Propuesta de diseño. Todos los derechos reservados.</p>
+      </div>
+      <a class="pie__enlace" href="legal.html">Aviso legal y privacidad</a>
+    </div>
+  </footer>
+</body>
+</html>
