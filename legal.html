@@ -11,15 +11,32 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..600&family=Manrope:wght@400;600;700&display=swap">
   <link rel="stylesheet" href="estilo.css?v=1">
+  <script src="web.js?v=1" defer></script>
 </head>
 <body>
   <header class="barra">
     <div class="envoltura barra__dentro">
-      <a class="logo" href="index.html" aria-label="Buchona's Beauty Salon, volver al inicio">
+      <a class="logo" href="index.html" aria-label="Buchona's Beauty Salon, inicio">
         <span class="logo__nombre">Buchona's</span>
         <span class="logo__lugar">Beauty Salon, Irun</span>
       </a>
-      <a class="btn btn--linea" href="index.html">Volver al inicio</a>
+      <nav class="menu-principal" aria-label="Secciones">
+        <a href="index.html#carta">Tratamientos</a>
+        <a href="index.html#resultados">Resultados</a>
+        <a href="index.html#nosotras">Nosotras</a>
+        <a href="index.html#visita">Visítanos</a>
+      </nav>
+      <a class="btn" href="cita.html">Pedir cita</a>
+      <button class="abrir-menu" type="button" aria-expanded="false" aria-controls="menu-movil" aria-label="Abrir menú" data-abrir-menu>
+        <svg class="abrir" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
+        <svg class="cerrar" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <nav class="menu-movil" id="menu-movil" aria-label="Secciones" hidden data-menu-movil>
+        <a href="index.html#carta">Tratamientos</a>
+        <a href="index.html#resultados">Resultados</a>
+        <a href="index.html#nosotras">Nosotras</a>
+        <a href="index.html#visita">Visítanos</a>
+      </nav>
     </div>
   </header>
   <main class="bloque">

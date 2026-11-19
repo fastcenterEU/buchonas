@@ -13,16 +13,33 @@
   <link rel="stylesheet" href="estilo.css?v=2">
   <link rel="stylesheet" href="citas.css?v=1">
   <script src="citas.js?v=1" defer></script>
+  <script src="web.js?v=1" defer></script>
 </head>
 <body data-modo="publico">
   <a class="saltar" href="#app">Ir al contenido</a>
   <header class="barra">
     <div class="envoltura barra__dentro">
-      <a class="logo" href="index.html" aria-label="Buchona's Beauty Salon, volver al inicio">
+      <a class="logo" href="index.html" aria-label="Buchona's Beauty Salon, inicio">
         <span class="logo__nombre">Buchona's</span>
         <span class="logo__lugar">Beauty Salon, Irun</span>
       </a>
-      <a class="btn btn--linea volver" href="index.html">Volver a la web</a>
+      <nav class="menu-principal" aria-label="Secciones">
+        <a href="index.html#carta">Tratamientos</a>
+        <a href="index.html#resultados">Resultados</a>
+        <a href="index.html#nosotras">Nosotras</a>
+        <a href="index.html#visita">Visítanos</a>
+      </nav>
+      <a class="btn" href="cita.html" aria-current="page">Pedir cita</a>
+      <button class="abrir-menu" type="button" aria-expanded="false" aria-controls="menu-movil" aria-label="Abrir menú" data-abrir-menu>
+        <svg class="abrir" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
+        <svg class="cerrar" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <nav class="menu-movil" id="menu-movil" aria-label="Secciones" hidden data-menu-movil>
+        <a href="index.html#carta">Tratamientos</a>
+        <a href="index.html#resultados">Resultados</a>
+        <a href="index.html#nosotras">Nosotras</a>
+        <a href="index.html#visita">Visítanos</a>
+      </nav>
     </div>
   </header>
 
