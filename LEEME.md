@@ -1,25 +1,30 @@
-# Buchona's Beauty Salon · Web con sistema de citas propio
+# Buchona's Beauty Salon · Web nueva con reservas
 
-Copia de la web con reservas online propias en lugar de AgendaPro.
+Diseño, código y textos originales de FastCenter.
 
-## Archivos nuevos o modificados
-- `index.html`: los botones «Reservar cita» llevan a `reservas.html`. Hay un enlace nuevo, «Mi cuenta», en el menú.
-- `reservas.html`, `reservas.css` y `reservas.js`: el sistema de citas.
+## Archivos
+- `index.html`, `estilo.css` y `web.js`: la web.
+- `reservas.html`, `reservas.css` y `reservas.js`: el sistema de citas, con login, vista de clienta y panel del salón.
+- `legal.html`: página legal, pendiente de los datos del salón.
+- `fotos/`: imágenes provisionales.
 
-El resto (`styles.css`, `main.js`, `legal.html`, `imagenes/`, `videos/`) es igual que el original.
+## Fotos
+Las imágenes de `fotos/` son provisionales. Pide las fotos al salón y sustitúyelas por las suyas manteniendo los mismos nombres:
 
-## Qué hace
-- **Clientas:** crean su cuenta o inician sesión. Eligen servicio, día en el calendario y hora libre. También pueden consultar o cancelar sus citas y añadirlas a su calendario (.ics).
-- **Salón:** agenda mensual con las citas de cada día. Desde ahí confirma, cancela o marca citas como completadas, y añade las que llegan por teléfono.
-- **Correos:** se envían al reservar, confirmar o cancelar, a la clienta y al salón.
+| Archivo | Foto |
+|---|---|
+| `salon.webp` | Interior del salón (portada) |
+| `hermanas.webp` | Arelis y Dennise |
+| `alisado-antes.webp` y `alisado-despues.webp` | Comparador del bótox capilar |
+| `labios-antes.webp` y `labios-despues.webp` | Comparador de labios |
+| `trabajo-1.webp` a `trabajo-6.webp` | Galería: uñas, cabello, pestañas, labios, pedicura y facial |
 
-## Configuración (al principio de `reservas.js`)
-- **Datos del salón:** horario, festivos, servicios y duraciones, y citas simultáneas (`puestos`).
-- **Cuenta del salón:** `salon.email` y `salon.claveInicial`. Cambia la clave antes de publicar.
-- **Correo real:** crea una cuenta en EmailJS y rellena `emailjs.publicKey`, `serviceId` y `templateId`. La plantilla debe usar las variables `{{to_email}}`, `{{to_name}}`, `{{subject}}` y `{{message}}`. Sin estos datos, la web funciona en **modo demostración** y los correos se muestran en la pestaña «Correos» del panel.
-- **Modo demostración:** con `demo: true` aparecen los botones de prueba y se crean citas de ejemplo. Ponlo en `false` para producción.
+Usa formato vertical 4:5 (por ejemplo 720 × 900 px) y WebP o JPG. Si cambias la extensión, cambia también el nombre en `index.html`.
 
-## Antes de usarlo con clientas reales
-Esta versión guarda los datos en el navegador (localStorage). Sirve para enseñar y probar el sistema, pero tiene dos límites: las citas no se comparten entre dispositivos y las cuentas no son seguras.
+## Opiniones
+Las cuatro opiniones son de clientas reales y están citadas tal cual. Comprueba que coinciden con las reseñas del perfil de Google del salón.
 
-Para producción hay que conectar el objeto `Store` de `reservas.js` a una base de datos con autenticación, por ejemplo Firebase o Supabase. También hay que actualizar la política de privacidad, porque el sistema guarda nombre, email y teléfono.
+## Sistema de citas
+La configuración (horario, servicios, email, EmailJS y modo demostración) está al principio de `reservas.js`.
+
+Esta versión guarda los datos en el navegador: sirve para enseñarla y probarla. Para usarla con clientas reales hay que conectar el objeto `Store` a una base de datos con login seguro, como Firebase o Supabase.

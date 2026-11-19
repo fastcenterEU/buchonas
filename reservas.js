@@ -273,7 +273,7 @@
     const u = sesion();
     const cuenta = $('[data-cuenta]');
     cuenta.hidden = !u;
-    $('.cabecera__fila').classList.toggle('rv-con-sesion', !!u);
+    $('.barra__dentro').classList.toggle('rv-con-sesion', !!u);
     if (u) $('[data-cuenta-nombre]').textContent = u.rol === 'salon' ? 'Panel del salón' : u.nombre;
     if (!u) app.innerHTML = vistaAcceso();
     else if (u.rol === 'salon') app.innerHTML = vistaSalon();
@@ -283,8 +283,7 @@
   function vistaAcceso() {
     const registro = vista.pestana === 'registro';
     return `
-      <p class="antetitulo">Reservas online</p>
-      <h1 class="rv-titulo">Reserva tu cita <em>en Irun</em></h1>
+      <h1 class="rv-titulo">Tu cita en Buchona's</h1>
       <p class="rv-entrada">Entra en tu cuenta para elegir servicio, día y hora, y consultar o cancelar tus citas. Recibirás la confirmación por correo electrónico.</p>
       <div class="rv-acceso">
         <div class="rv-tarjeta">
@@ -300,22 +299,22 @@
             <div class="rv-campo"><label for="r-clave">Contraseña (mínimo 6 caracteres)</label><input id="r-clave" name="clave" type="password" autocomplete="new-password" minlength="6" required></div>
             <label class="rv-check"><input type="checkbox" name="privacidad" required> <span>He leído y acepto la <a href="legal.html">política de privacidad</a>.</span></label>
             <div class="rv-error" data-error hidden></div>
-            <button class="boton boton--grande" type="submit">Crear cuenta</button>
+            <button class="btn btn--lg" type="submit">Crear cuenta</button>
           </form>` : `
           <form class="rv-formulario" data-form="entrar" novalidate>
             <div class="rv-campo"><label for="e-email">Email</label><input id="e-email" name="email" type="email" autocomplete="email" required></div>
             <div class="rv-campo"><label for="e-clave">Contraseña</label><input id="e-clave" name="clave" type="password" autocomplete="current-password" required></div>
             <div class="rv-error" data-error hidden></div>
-            <button class="boton boton--grande" type="submit">Entrar</button>
+            <button class="btn btn--lg" type="submit">Entrar</button>
             <p class="rv-nota">¿No tienes cuenta? <a href="#" data-accion="pestana" data-pestana="registro">Créala en un minuto</a>. ¿Has olvidado la contraseña? Llámanos al <a href="tel:+34943906915">${CONFIG.salon.telefono}</a>.</p>
           </form>`}
         </div>
         ${CONFIG.demo ? `
         <aside class="rv-tarjeta rv-demo" aria-label="Acceso de demostración">
-          <p class="rv-paso">Demostración</p>
+          <p class="rv-paso">Modo demostración</p>
           <p>Prueba el sistema sin crear una cuenta. Los datos son de ejemplo y se guardan solo en este navegador.</p>
-          <button class="boton" type="button" data-accion="demo" data-rol="clienta">Entrar como clienta</button>
-          <button class="boton boton--contorno" type="button" data-accion="demo" data-rol="salon">Entrar como salón</button>
+          <button class="btn" type="button" data-accion="demo" data-rol="clienta">Entrar como clienta</button>
+          <button class="btn btn--claro" type="button" data-accion="demo" data-rol="salon">Entrar como salón</button>
         </aside>` : ''}
       </div>`;
   }
@@ -326,8 +325,7 @@
       .sort((a, b) => momento(a.fecha, a.hora) - momento(b.fecha, b.hora));
     const pestana = vista.pestana === 'mis' ? 'mis' : vista.pestana === 'exito' ? 'exito' : 'nueva';
     return `
-      <p class="antetitulo">Tu cuenta</p>
-      <h1 class="rv-titulo">Hola, <em>${esc(u.nombre.split(' ')[0])}</em></h1>
+      <h1 class="rv-titulo">Hola, ${esc(u.nombre.split(' ')[0])}</h1>
       <div class="rv-pestanas" role="tablist">
         <button type="button" role="tab" aria-selected="${pestana !== 'mis'}" data-accion="pestana" data-pestana="nueva">Nueva cita</button>
         <button type="button" role="tab" aria-selected="${pestana === 'mis'}" data-accion="pestana" data-pestana="mis">Mis citas${proximas.length ? `<span class="rv-contador">${proximas.length}</span>` : ''}</button>
@@ -377,7 +375,7 @@
               <dt>Precio</dt><dd>${esc(s.precio)}</dd>
             </dl>
             <div class="rv-campo"><label for="notas">Notas para el salón (opcional)</label><textarea id="notas" data-notas placeholder="Por ejemplo: largo del pelo, alergias, si es tu primera vez…"></textarea></div>
-            <button class="boton boton--grande" type="button" data-accion="reservar">Reservar cita</button>
+            <button class="btn btn--lg" type="button" data-accion="reservar">Reservar cita</button>
             <p class="rv-nota">${CONFIG.confirmacionAutomatica ? 'Recibirás la confirmación por correo.' : 'El salón confirmará tu cita y te avisará por correo.'} Puedes cancelarla hasta ${CONFIG.cancelarHastaHoras} h antes.</p>
           </div>` : ''}
         </div>
@@ -394,8 +392,8 @@
         <p>${esc(servicio(c.servicio).nombre)} · ${esc(mayus(fechaLarga(c.fecha)))} a las ${c.hora}</p>
         <p class="rv-nota">${c.estado === 'confirmada' ? 'Te hemos enviado la confirmación por correo.' : 'Te hemos enviado un correo con los datos. Te avisaremos en cuanto el salón la confirme.'}</p>
         <div class="rv-cita__acciones">
-          <button class="boton" type="button" data-accion="ics" data-id="${c.id}">Añadir a mi calendario</button>
-          <button class="boton boton--secundario" type="button" data-accion="pestana" data-pestana="mis">Ver mis citas</button>
+          <button class="btn" type="button" data-accion="ics" data-id="${c.id}">Añadir a mi calendario</button>
+          <button class="btn btn--linea" type="button" data-accion="pestana" data-pestana="mis">Ver mis citas</button>
         </div>
       </div>`;
   }
@@ -407,12 +405,12 @@
     const puedeCancelar = activa && (salon ? futura : momento(c.fecha, c.hora) - Date.now() > CONFIG.cancelarHastaHoras * 3600e3);
     let acciones = '';
     if (salon) {
-      if (c.estado === 'pendiente') acciones += `<button class="boton rv-boton-peq" type="button" data-accion="confirmar" data-id="${c.id}">Confirmar</button>`;
-      if (c.estado === 'confirmada' && !futura) acciones += `<button class="boton boton--secundario rv-boton-peq" type="button" data-accion="completar" data-id="${c.id}">Completada</button>`;
-      if (puedeCancelar) acciones += `<button class="boton boton--peligro rv-boton-peq" type="button" data-accion="cancelar" data-id="${c.id}">Cancelar</button>`;
+      if (c.estado === 'pendiente') acciones += `<button class="btn rv-boton-peq" type="button" data-accion="confirmar" data-id="${c.id}">Confirmar</button>`;
+      if (c.estado === 'confirmada' && !futura) acciones += `<button class="btn btn--linea rv-boton-peq" type="button" data-accion="completar" data-id="${c.id}">Completada</button>`;
+      if (puedeCancelar) acciones += `<button class="btn btn--peligro rv-boton-peq" type="button" data-accion="cancelar" data-id="${c.id}">Cancelar</button>`;
     } else {
-      if (activa && futura) acciones += `<button class="boton boton--secundario rv-boton-peq" type="button" data-accion="ics" data-id="${c.id}">Añadir al calendario</button>`;
-      if (puedeCancelar) acciones += `<button class="boton boton--peligro rv-boton-peq" type="button" data-accion="cancelar" data-id="${c.id}">Cancelar</button>`;
+      if (activa && futura) acciones += `<button class="btn btn--linea rv-boton-peq" type="button" data-accion="ics" data-id="${c.id}">Añadir al calendario</button>`;
+      if (puedeCancelar) acciones += `<button class="btn btn--peligro rv-boton-peq" type="button" data-accion="cancelar" data-id="${c.id}">Cancelar</button>`;
       else if (activa && futura) acciones += `<p class="rv-nota" style="margin:0">Para cancelarla, llama al <a href="tel:+34943906915">${CONFIG.salon.telefono}</a>.</p>`;
     }
     return `
@@ -434,7 +432,7 @@
     return `
       <h2 class="rv-subtitulo">Próximas citas</h2>
       ${proximas.length ? `<ul class="rv-lista">${proximas.map((c) => tarjetaCita(c)).join('')}</ul>`
-        : '<div class="rv-tarjeta"><p class="rv-vacio">No tienes citas próximas.</p><button class="boton" type="button" data-accion="pestana" data-pestana="nueva" style="margin-top:14px">Reservar cita</button></div>'}
+        : '<div class="rv-tarjeta"><p class="rv-vacio">No tienes citas próximas.</p><button class="btn" type="button" data-accion="pestana" data-pestana="nueva" style="margin-top:14px">Reservar cita</button></div>'}
       ${pasadas.length ? `<h2 class="rv-subtitulo">Historial</h2><ul class="rv-lista">${pasadas.map((c) => tarjetaCita(c)).join('')}</ul>` : ''}`;
   }
 
@@ -460,7 +458,7 @@
           <div>
             <div class="rv-agenda__cabeza">
               <h2>${esc(mayus(fechaLarga(agenda.fecha)))}</h2>
-              <button class="boton rv-boton-peq" type="button" data-accion="nueva-salon"${abierto && deIso(agenda.fecha) >= hoy() ? '' : ' disabled'}>+ Añadir cita</button>
+              <button class="btn rv-boton-peq" type="button" data-accion="nueva-salon"${abierto && deIso(agenda.fecha) >= hoy() ? '' : ' disabled'}>+ Añadir cita</button>
             </div>
             ${!abierto ? '<div class="rv-banda">El salón está cerrado este día.</div>' : ''}
             ${delDia.length ? `<ul class="rv-lista">${delDia.map((c) => tarjetaCita(c, { salon: true })).join('')}</ul>`
@@ -482,11 +480,10 @@
             <p class="rv-correo__asunto">${esc(m.asunto)}</p>
             <pre>${esc(m.mensaje)}</pre>
           </li>`).join('')}</ul>` : '<div class="rv-tarjeta"><p class="rv-vacio">Todavía no se ha generado ningún correo. Reserva una cita como clienta para verlo aquí.</p></div>'}
-        ${CONFIG.demo ? '<button class="boton boton--peligro rv-boton-peq" type="button" data-accion="reiniciar" style="margin-top:20px">Restablecer datos de demostración</button>' : ''}`;
+        ${CONFIG.demo ? '<button class="btn btn--peligro rv-boton-peq" type="button" data-accion="reiniciar" style="margin-top:20px">Restablecer datos de demostración</button>' : ''}`;
     }
     return `
-      <p class="antetitulo">Panel del salón</p>
-      <h1 class="rv-titulo">Agenda de <em>citas</em></h1>
+      <h1 class="rv-titulo">Agenda del salón</h1>
       <div class="rv-cifras">
         <div class="rv-cifra"><strong>${activas(iso(hoy())).length}</strong><span>citas hoy</span></div>
         <div class="rv-cifra"><strong>${pendientes.length}</strong><span>por confirmar</span></div>
@@ -523,8 +520,8 @@
         <div class="rv-campo"><label for="s-notas">Notas</label><textarea id="s-notas" name="notas"></textarea></div>
         <div class="rv-error" data-error hidden></div>
         <div class="rv-dialogo__acciones">
-          <button class="boton boton--secundario" type="button" data-accion="cerrar-dialogo">Cancelar</button>
-          <button class="boton" type="submit">Guardar cita</button>
+          <button class="btn btn--linea" type="button" data-accion="cerrar-dialogo">Cancelar</button>
+          <button class="btn" type="submit">Guardar cita</button>
         </div>
       </form>`);
     $('[data-cambia-servicio]').addEventListener('change', (e) => {
@@ -537,8 +534,8 @@
       <h2 id="dialogo-titulo">${esc(titulo)}</h2>
       <p>${texto}</p>
       <div class="rv-dialogo__acciones" style="margin-top:22px">
-        <button class="boton boton--secundario" type="button" data-accion="cerrar-dialogo">Volver</button>
-        <button class="boton boton--peligro" type="button" data-confirmar>${esc(boton)}</button>
+        <button class="btn btn--linea" type="button" data-accion="cerrar-dialogo">Volver</button>
+        <button class="btn btn--peligro" type="button" data-confirmar>${esc(boton)}</button>
       </div>`);
     $('[data-confirmar]').addEventListener('click', async () => { cerrarDialogo(); await accion(); }, { once: true });
   }
