@@ -4,7 +4,9 @@ Diseño, código y textos originales de FastCenter.
 
 ## Archivos
 - `index.html`, `estilo.css` y `web.js`: la web.
-- `reservas.html`, `reservas.css` y `reservas.js`: el sistema de citas, con login, vista de clienta y panel del salón.
+- `cita.html`: página pública para pedir cita. No hace falta registrarse.
+- `reservas/`: panel privado del salón, protegido con contraseña. Su dirección es `tudominio/reservas/`.
+- `citas.js` y `citas.css`: el sistema de citas que usan las dos páginas.
 - `legal.html`: página legal, pendiente de los datos del salón.
 - `fotos/`: imágenes provisionales.
 
@@ -25,6 +27,10 @@ Usa formato vertical 4:5 (por ejemplo 720 × 900 px) y WebP o JPG. Si cambias la
 Las cuatro opiniones son de clientas reales y están citadas tal cual. Comprueba que coinciden con las reseñas del perfil de Google del salón.
 
 ## Sistema de citas
-La configuración (horario, servicios, email, EmailJS y modo demostración) está al principio de `reservas.js`.
+Al pedir cita, la clienta elige tratamiento, día y hora libre, y deja su nombre, teléfono y email. Recibe un correo de que la petición ha llegado y otro cuando el salón la confirma. El salón recibe un aviso de cada cita nueva.
 
-Esta versión guarda los datos en el navegador: sirve para enseñarla y probarla. Para usarla con clientas reales hay que conectar el objeto `Store` a una base de datos con login seguro, como Firebase o Supabase.
+Desde `/reservas/`, el salón entra con su contraseña. Allí ve la agenda, confirma y cancela citas (la clienta recibe un correo en ambos casos) y añade las citas que llegan por teléfono.
+
+La configuración está al principio de `citas.js`: contraseña del salón, email de avisos, horario, festivos, tratamientos y duraciones, EmailJS y modo demostración. Con `demo: true` se crean citas de ejemplo y el panel muestra un acceso sin contraseña. Ponlo en `false` antes de usarlo de verdad.
+
+**Limitación importante:** esta versión guarda las citas en el navegador. Una cita pedida desde el móvil de una clienta no aparece en el panel del salón. Además, la contraseña se puede leer en el código de la página. Para usarlo con clientas reales hay que conectar el objeto `Store` de `citas.js` a una base de datos con login seguro, como Firebase o Supabase.
